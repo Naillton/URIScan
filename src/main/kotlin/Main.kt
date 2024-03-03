@@ -17,9 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import java.io.BufferedReader
 import java.io.File
-import java.io.FileReader
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
@@ -67,9 +65,7 @@ fun MainScreen() {
     }
 
     fun connectionUrl() {
-        if (!validFile()) {
-            validFile()
-        } else {
+        if (validFile()) {
             try {
                 myFile.bufferedReader().forEachLine {
                     val url = textState+it
@@ -95,6 +91,8 @@ fun MainScreen() {
                 txtError = "Error, Invalid Url or .txt Invalid"
                 isOpen = true
             }
+        } else {
+            validFile()
         }
     }
     MaterialTheme {
